@@ -4,72 +4,29 @@
 // Returns true for every 3 ? between every number pair sums to 10
 // else the function returns false
 
-
-var qm_cnt = 0;
-
 function QuestionMarks(str)
 {
-  var x, y, z, abort=false;
-  //looking for first number in pair
-  for(x = 0; x < str.length; x++)
+  ret = false;
+  //First number in pair
+  for(var x = 0; x < str.length; x++)
   {
-    abort=false;
-    if(parseInt(str[x]))
-    {
-      console.log(str[x]+" is x.");
-      //looking for second number in pair
-       for(y= str[x]; y < str.length && !abort; y++)
+    //Second number in pair
+    for(var y= x+1; y < str.length; y++)
        {
-         if (parseInt(str[y]) && !abort)
-         {
-           console.log(str[y]+" is y.")
-           if (parseInt(str[x]) + parseInt(str[y]) == 10)
-           {
-             console.log(parseInt(str[x]) + parseInt(str[y]));
-             return true;
-              // looking for 3 ? between number pairs that sum to 10
-
-           }
-           else
-           {
-             console.log("not 10");
-             abort=true;
-             // return false;
-           }
-         }
-        }
-      }
-    }
-
-
-//       if (nums.indexOf(str[x]) !== -1) {
-//         var n1 = str[x];
-//         console.log(n1);
-//         // looking for second number in pair
-//         for (var y=str[x]; y<str.length; y++) {
-//           if (nums.indexOf(str[y]) !== -1) {
-//             var n2 = str[y];
-//             console.log(n2);
-//
-//             //finding number pairs that sum to 10
-//             if(n1+n2 == 10) {
-//               // looking for 3 ? between number pairs that sum to 10
-//               for(var z=str[x]; z<str[y]; z++) {
-//                 if(str[z]=='?') {
-//                   qm_cnt += 1;
-//                   if (qm_cnt == 3) {
-//                     return true;
-//
-//                   } //end of if (qm_cnt == 3)
-//                 } // end of if(str[z]=='?')
-//               } // end of for(z=str[x]; z<str[y]; z++)
-//             } // end of if(n1 + n2 == 10)
-//           } // end of if (nums.indexOf(str[y]) !== -1)
-//         } //end of for (y=str[x]; y<str.length; y++)
-      //end of if nums.indexOf(str[y]) !== -1
- //end of for(x = 0; x < str.length ; x++)
-//   return false;
-} //end of func
+        if (parseInt(str[x]) + parseInt(str[y]) === 10)
+        {
+          if(str.slice(x+1,y).split('?').length - 1 === 3) {
+                ret = true;
+                break;
+            } // end of if(str.slice(x+1,y).split('?').length - 1 === 3
+            else {
+                return false;
+            } // end of else
+          } // end of if (parseInt(str[x]) + parseInt(str[y]) === 10)
+      } // end offor(var y= x+1; y < str.length; y++)
+  } // end of for(var x = 0; x < str.length; x++)
+  return ret;
+} // end of function
 
 // //test function QuestionMarks()
 QuestionMarks("bcc?7??ccc?2tt1??????5");
